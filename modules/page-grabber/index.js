@@ -60,11 +60,13 @@ class PageGrabber {
                 return []
             }
 
-            const skipAnchors = matches.filter((link) => this.skipAnchors(link));
-            const skipFiles = skipAnchors.filter((url) => this.skipFiles(url));
-            const fixedUrls = skipFiles.map((url) => this.toUrl(url));
-            const clearedLinks = fixedUrls.map((link) => trimLastSplash(link));
-            const onlyCurrentSiteUrls = this.filterUrls(clearedLinks);
+            const filtered = matches
+                .filter((link) => this.skipAnchors(link))
+                .filter((url) => this.skipFiles(url))
+                .map((url) => this.toUrl(url))
+                .map((link) => trimLastSplash(link));
+
+            const onlyCurrentSiteUrls = this.filterUrls(filtered);
             const uniqueArray = new Set(onlyCurrentSiteUrls);
             return [...uniqueArray];
         } catch (error) {

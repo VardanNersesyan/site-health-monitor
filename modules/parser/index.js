@@ -69,8 +69,9 @@ class Parser extends EventEmitter {
 
   setToDoList = (links) => {
     const checkedLinks = Object.keys(this.checkedList);
-    const queryCleared = links.map((link) => this.clearQueryParams(link));
-    const filtered = queryCleared.filter((link) => !checkedLinks.includes(link));
+    const filtered = links
+        .map((link) => this.clearQueryParams(link))
+        .filter((link) => !checkedLinks.includes(link));
     const unique = new Set(filtered);
     this.todoList = [...unique];
     this.emit(EVENTS_ENUM.TODO_LIST_UPDATED);
@@ -84,7 +85,11 @@ class Parser extends EventEmitter {
 
     let responsesStore = [];
     for (let i = 0; i < this.todoList.length; i+= this.threadsCount) {
-      const resp = await Promise.all(this.todoList.slice(i, i + this.threadsCount).map((url) => this.worker(url)));
+      const resp = await Promise.all(
+          this.todoList
+              .slice(i, i + this.threadsCount)
+              .map((url) => this.worker(url))
+      );
       responsesStore = [
           ...responsesStore,
           ...resp
