@@ -8,7 +8,7 @@ const properties = {
         web: {
             warning: 'Web site url is required!',
             type: 'string',
-            description: 'Enter please the site which you want to monitor or leave empty for use default value end press enter.',
+            description: 'Enter please the site which you want to monitor or leave empty for use default value and press enter.',
             default: 'https://learn.javascript.ru',
         },
         threadsCount: {
