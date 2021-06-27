@@ -1,0 +1,17 @@
+{
+  "name": "site-parser",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "http-foundation-response": "^1.0.0",
+    "prompt": "^1.1.0"
+  }
+}
